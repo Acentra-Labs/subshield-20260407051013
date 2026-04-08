@@ -349,8 +349,8 @@ export const emailTemplates = [
 We are writing to request verification of insurance coverage for {{sub_company_name}}, a subcontractor working with {{gc_company_name}}.
 
 Please verify the following coverage is current and active:
-- General Liability: Minimum ${{gl_minimum}} per occurrence
-- Workers' Compensation: Minimum ${{wc_minimum}} per accident
+- General Liability: Minimum \${{gl_minimum}} per occurrence
+- Workers' Compensation: Minimum \${{wc_minimum}} per accident
 
 You can respond by clicking the secure link below:
 {{magic_link}}

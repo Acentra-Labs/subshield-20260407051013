@@ -3,7 +3,7 @@ import { FileCheck, CheckCircle, XCircle, AlertTriangle, Clock, Printer, Buildin
 import { useAuth } from '../contexts/AuthContext';
 import { useData } from '../contexts/DataContext';
 import StatusBadge from '../components/StatusBadge';
-import { formatDate, formatCurrency } from '../utils/formatters';
+import { formatDate } from '../utils/formatters';
 
 export default function DrawVerification() {
   const { isAdmin, user } = useAuth();
@@ -13,7 +13,10 @@ export default function DrawVerification() {
   const [showReport, setShowReport] = useState(false);
   const reportRef = useRef(null);
 
-  const subs = selectedGcId ? getSubsForGc(selectedGcId) : [];
+  const subs = useMemo(
+    () => (selectedGcId ? getSubsForGc(selectedGcId) : []),
+    [selectedGcId, getSubsForGc]
+  );
   const gc = generalContractors.find((g) => g.id === selectedGcId);
 
   const selectedSubs = useMemo(
@@ -54,8 +57,9 @@ export default function DrawVerification() {
       {/* GC Selector */}
       {isAdmin && (
         <div className="mb-5">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Select General Contractor</label>
+          <label htmlFor="draw-gc-select" className="block text-sm font-medium text-gray-700 mb-1">Select General Contractor</label>
           <select
+            id="draw-gc-select"
             value={selectedGcId}
             onChange={(e) => { setSelectedGcId(e.target.value); setSelectedSubIds(new Set()); setShowReport(false); }}
             className="w-full max-w-sm px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400 focus:border-transparent bg-white"

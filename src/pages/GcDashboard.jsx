@@ -78,6 +78,7 @@ export default function GcDashboard() {
           onEdit={() => {
             toast.info('Contact your administrator to edit subcontractor details.');
           }}
+          onSendEmail={(sub) => setEmailPreview({ sub, agent: sub.agent })}
         />
       )}
 

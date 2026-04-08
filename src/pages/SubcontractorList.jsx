@@ -104,6 +104,7 @@ export default function SubcontractorList() {
             setEditSub(sub);
             setFormOpen(true);
           }}
+          onSendEmail={(sub) => setEmailPreview({ sub, agent: sub.agent })}
         />
       )}
 

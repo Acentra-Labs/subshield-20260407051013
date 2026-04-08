@@ -1,8 +1,20 @@
+import { useEffect, useRef } from 'react';
 import { X, Send, Mail } from 'lucide-react';
 import { useToast } from '../contexts/ToastContext';
 
 export default function EmailPreviewModal({ open, onClose, sub, agent }) {
   const { toast } = useToast();
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    dialogRef.current?.focus();
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open, onClose]);
 
   if (!open || !sub || !agent) return null;
 
@@ -16,13 +28,20 @@ export default function EmailPreviewModal({ open, onClose, sub, agent }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="fixed inset-0 bg-black/40" onClick={onClose} />
-      <div className="relative bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="email-preview-title"
+        tabIndex={-1}
+        className="relative bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto outline-none"
+      >
         <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 z-10 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-2">
             <Mail className="w-5 h-5 text-shield-500" />
-            <h2 className="text-lg font-bold text-gray-900">Email Preview</h2>
+            <h2 id="email-preview-title" className="text-lg font-bold text-gray-900">Email Preview</h2>
           </div>
-          <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600" aria-label="Close">
             <X className="w-5 h-5" />
           </button>
         </div>

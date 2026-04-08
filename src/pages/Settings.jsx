@@ -48,32 +48,36 @@ export default function Settings() {
             <div className="space-y-4 max-w-md">
               <h2 className="text-lg font-semibold text-gray-900">Profile</h2>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <label htmlFor="settings-full_name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                 <input
+                  id="settings-full_name"
                   type="text"
                   defaultValue={user?.full_name}
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label htmlFor="settings-email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 <input
+                  id="settings-email"
                   type="email"
                   defaultValue={user?.email}
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <label htmlFor="settings-phone" className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
                 <input
+                  id="settings-phone"
                   type="text"
                   defaultValue={user?.phone}
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                <label htmlFor="settings-password" className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
                 <input
+                  id="settings-password"
                   type="password"
                   placeholder="Leave blank to keep current"
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400"
@@ -118,8 +122,9 @@ export default function Settings() {
               <h2 className="text-lg font-semibold text-gray-900">Default Coverage Requirements</h2>
               <p className="text-sm text-gray-500">Set default minimums for new general contractors. Individual GCs can override these.</p>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">GL Per Occurrence Minimum ($)</label>
+                <label htmlFor="settings-gl_occurrence" className="block text-sm font-medium text-gray-700 mb-1">GL Per Occurrence Minimum ($)</label>
                 <input
+                  id="settings-gl_occurrence"
                   type="number"
                   defaultValue={1000000}
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400"
@@ -127,16 +132,18 @@ export default function Settings() {
                 <p className="text-xs text-gray-500 mt-1">Idaho industry standard: $1,000,000 (statutory minimum: $300,000)</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">GL Aggregate Minimum ($)</label>
+                <label htmlFor="settings-gl_aggregate" className="block text-sm font-medium text-gray-700 mb-1">GL Aggregate Minimum ($)</label>
                 <input
+                  id="settings-gl_aggregate"
                   type="number"
                   defaultValue={2000000}
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">WC Employer Liability Minimum ($)</label>
+                <label htmlFor="settings-wc_liability" className="block text-sm font-medium text-gray-700 mb-1">WC Employer Liability Minimum ($)</label>
                 <input
+                  id="settings-wc_liability"
                   type="number"
                   defaultValue={500000}
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400"
@@ -157,7 +164,7 @@ export default function Settings() {
                 <h3 className="text-sm font-medium text-gray-800 mb-2">Initial Verification Request</h3>
                 <textarea
                   rows={8}
-                  defaultValue={`Dear {{agent_name}},\n\nWe are writing to request verification of insurance coverage for {{sub_company_name}}, a subcontractor working with {{gc_company_name}}.\n\nPlease verify the following coverage is current and active:\n- General Liability: Minimum ${{gl_minimum}} per occurrence\n- Workers' Compensation: Minimum ${{wc_minimum}} per accident\n\nThank you,\n{{consultant_name}}`}
+                  defaultValue={`Dear {{agent_name}},\n\nWe are writing to request verification of insurance coverage for {{sub_company_name}}, a subcontractor working with {{gc_company_name}}.\n\nPlease verify the following coverage is current and active:\n- General Liability: Minimum \${{gl_minimum}} per occurrence\n- Workers' Compensation: Minimum \${{wc_minimum}} per accident\n\nThank you,\n{{consultant_name}}`}
                   className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-shield-400 font-mono"
                 />
                 <p className="text-xs text-gray-500 mt-2">

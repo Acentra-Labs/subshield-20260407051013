@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Phone, Mail, Users, X, ChevronRight } from 'lucide-react';
 import { useData } from '../contexts/DataContext';
 import StatusBadge from '../components/StatusBadge';
@@ -7,6 +7,13 @@ export default function AgentList() {
   const { insuranceAgents } = useData();
   const [selectedAgent, setSelectedAgent] = useState(null);
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    if (!selectedAgent) return;
+    const handleKeyDown = (e) => { if (e.key === 'Escape') setSelectedAgent(null); };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [selectedAgent]);
 
   const filtered = search
     ? insuranceAgents.filter(
@@ -25,7 +32,9 @@ export default function AgentList() {
       </div>
 
       <div className="mb-4">
+        <label htmlFor="agent-search" className="sr-only">Search agents</label>
         <input
+          id="agent-search"
           type="text"
           placeholder="Search agents..."
           value={search}
@@ -114,7 +123,7 @@ export default function AgentList() {
       {selectedAgent && (
         <div className="fixed inset-0 z-50 flex justify-end">
           <div className="fixed inset-0 bg-black/30" onClick={() => setSelectedAgent(null)} />
-          <div className="relative w-full max-w-md bg-white shadow-xl overflow-y-auto">
+          <div role="dialog" aria-modal="true" aria-label="Agent details" className="relative w-full max-w-md bg-white shadow-xl overflow-y-auto">
             <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 z-10 flex items-center justify-between">
               <h2 className="text-lg font-bold text-gray-900">{selectedAgent.agent_name}</h2>
               <button onClick={() => setSelectedAgent(null)} className="p-1 text-gray-400 hover:text-gray-600">

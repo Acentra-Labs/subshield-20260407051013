@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-shield-50: oklch(0.97 0.02 250);
+  --color-shield-100: oklch(0.93 0.04 250);
+  --color-shield-200: oklch(0.87 0.07 250);
+  --color-shield-300: oklch(0.78 0.10 250);
+  --color-shield-400: oklch(0.68 0.14 250);
+  --color-shield-500: oklch(0.55 0.18 250);
+  --color-shield-600: oklch(0.47 0.18 250);
+  --color-shield-700: oklch(0.40 0.16 250);
+  --color-shield-800: oklch(0.33 0.13 250);
+  --color-shield-900: oklch(0.27 0.10 250);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

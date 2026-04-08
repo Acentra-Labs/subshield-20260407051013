@@ -80,6 +80,7 @@ export default function ConsultantDashboard() {
             setSelectedSub(null);
             setEditSub(sub);
           }}
+          onSendEmail={(sub) => setEmailPreview({ sub, agent: sub.agent })}
         />
       )}
 
